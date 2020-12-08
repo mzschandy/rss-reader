@@ -5,48 +5,48 @@
 
 <br />
 
-<form class="form-inline">
+<form class="">
 
-    <div class="form-group mx-sm-3 mb-2">
+    <div class="form-group">
 
         <label for="inputPassword2" class="sr-only">Password</label>
 
-        <input type="text" class="form-control" placeholder="paste link" name="url">
+        <input type="text" class="form-control" placeholder="Add RSS Feed" name="url">
 
     </div>
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
 
-    <button type="submit" class="btn btn-primary mb-2">Search</button>
+    
 
 </form>
 
 {% if feed %}
 
-<h2>{{ feed.feed.title }}</h2>
+<h2 style="margin-top: 1em; margin-bottom: 1em">{{ feed.feed.title }}</h2>
 
 {% if feed.entries %}
 
 {% for entry in feed.entries %}
 
-<div class="card">
+<div class="card" style="margin-bottom: 1em">
 
     <div class="card-header">
 
-        Feed
+        {{ entry.published }}
 
     </div>
 
     <div class="card-body">
 
-        <h5 class="card-title">Headline: {{ entry.title }}</h5>
+        <h5 class="card-title">{{ entry.title }}</h5>
 
-        <p class="card-text">Description: {{ entry.description }}</p>
+        <p class="card-text">{{ entry.description }}</p>
 
-        <a href="{{ entry.link }}" class="btn btn-primary">Visit Link</a>
+        <a href="{{ entry.link }}" target="_blank" class="btn btn-primary">Read More</a>
 
     </div>
 
 </div>
-<p>{{ entry.published }}</p>
 
 
 
@@ -59,7 +59,7 @@
 
 <br />
 
-<p>Enter your favorite RSS feed above.</p>
+<h3>Enter your favorite feed to get started</h3>
 
 {% endif %}
 
