@@ -1,74 +1,86 @@
 {% extends "rss/base.html" %}
 
-
 {% block body %}
 
-<br />
-
-<form class="">
-
-    <div class="form-group">
-
-        <label for="inputPassword2" class="sr-only">Password</label>
-
-        <input type="text" class="form-control" placeholder="Add RSS Feed" name="url">
-
-    </div>
-        <button type="submit" class="btn btn-primary mb-2">Search</button>
-
+<div id="header">
+    <header class="top">   
+        <div class="wrapper">
+            <div class="oneThird">
+                <div></div>
+                <div class="mobileMenu">
+                    <nav class="menu">
+                        <div class="menuItem close">
+                            <i class="fa fa-close closeMenu"></i>
+                        </div>
+                        <div class="menuItem addFeed"><span><i class="fa fa-plus"></i>Add Feed</span></div>
+                        <div class="menuItem home"><span><i class="fa fa-home"></i></span>Home</div>
+                    </nav>
+                    <div class="feedsList">
+                        <div class="name"></div>
+                        <div class="list">
+                            {%for feed in feedList%}
+                            <div class="item">{{feed.name}}</div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+                <div class="logo">
+                    <span>
+                        <i class="fa fa-bars mobileIcon"></i>
+                        <i class="fa fa-rss icon"></i>
+                        <div class="brand">FeedMe</div>
+                    </span>
+                </div>
+            </div>
+            <div class="twoThird"></div>
+        </div>
+    </header>
     
-
-</form>
-
-{% if feed %}
-
-<h2 style="margin-top: 1em; margin-bottom: 1em">{{ feed.feed.title }}</h2>
-
-{% if feed.entries %}
-
-{% for entry in feed.entries %}
-
-<div class="card" style="margin-bottom: 1em">
-
-    <div class="card-header">
-
-        {{ entry.published }}
-
-    </div>
-
-    <div class="card-body">
-
-        <h5 class="card-title">{{ entry.title }}</h5>
-
-        <p class="card-text">{{ entry.description }}</p>
-
-        <a href="{{ entry.link }}" target="_blank" class="btn btn-primary">Read More</a>
-
-    </div>
-
 </div>
 
-
-
-
-{% endfor %}
-
-{% endif %}
-
-{% else %}
-
-<br />
-
-<h3>Enter your favorite feed to get started</h3>
-
-{% endif %}
-
-
-
-
-{{ feed2 }}
-
-
-
+<div id="body">
+    <div class="wrapper">
+        <div class="frame">
+            <div class="sidebar">
+                <nav class="menu">
+                    <a href="#" class="menuItem addFeed"><span><i class="fa fa-plus"></i>Add Feed</span></a>
+                    <a href="#" class="menuItem home active"><span><i class="fa fa-home"></i></span>Home</a>
+                    <a href="#" class="menuItem home"><span><i class="fa fa-bookmark"></i></span>Read Later</a>
+                </nav>
+                <div class="feedsList">
+                    <div class="name">Feeds</div>
+                    
+                    <div class="list">
+                        {%for feed in feedList%}
+                        <div class="item">{{feed.name}}</div>
+                        {%endfor%}
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="content">
+                <main class="content">
+                    <div class="header">
+                        <div>Feeds</div>
+                    </div>
+                    <div class="feeds">
+                        {%for feed in feedList%}
+                        {%for entry in feed.feed.entries%}
+                        <div class="feed">
+                            <a href="{{ entry.link }}" target="_blank" class="item">
+                                <div class="name">{{feed.name}}</div>
+                                <div class="title">{{ entry.title }}</div>  
+                                <div class="summary">{{ entry.description }}</div>
+                                <div class="date">{{ entry.published }}</div>
+                            </a>
+                        </div>
+                        {%endfor%}
+                        {%endfor%}
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>  
+</div>
 
 {% endblock %}

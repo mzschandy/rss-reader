@@ -1,0 +1,149 @@
+{% extends "rss/base.html" %}
+
+
+{% block body %}
+<div class="sideNav">
+    <div class="menu">
+        <a class="allFeeds" href="/">All Feeds</a>
+        <div class="title">Feeds</div>
+        <div class="feedLinks">
+            {%for feed in FeedList%}
+            <a href="#">{{feed.name}}</a>
+            {%endfor%}
+        </div>
+    </div>
+</div>
+<div class="frame">
+    <div class="content">
+        <form method="post">
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+                    <div class="medium-4 cell">
+                        <input type="text" id="name" name="name" placeholder="Feed Name">
+                    </div>
+                    <div class="medium-4 cell">
+                        <input type="text" id="feed" name="feed" placeholder="Feed URL">
+                    </div>
+                    <div class="medium-1 cell">
+                        <button name="feedAdd" type="submit" class="button submit">Add</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="feeds">
+            <h1>Feeds</h1>
+            <div class="lister">
+                {%for feed in feedList%}
+                    {%for entry in feed.feed.entries%}
+                        <a href="#" class="feed">
+                            <div class="name">In Trump’s final days, a rush of federal executions </div>
+                            <div class="info">
+                                <p class="feedTitle">BBC</p>
+                                <p> / </p>
+                                <p class="date">Wed, 09 Dec 2020 21:54:29 GMT</p>
+                            </div>
+                            <div class="blurb">The executions put Mr Trump on track to be the most prolific execution president in modern history.</div>
+                            <div class="border"></div>
+                        </a>
+                    {%endfor%}
+                {%endfor%}
+                <a href="#" class="feed">
+                    <div class="name">In Trump’s final days, a rush of federal executions </div>
+                    <div class="info">
+                        <p class="feedTitle">BBC</p>
+                        <p> / </p>
+                        <p class="date">Wed, 09 Dec 2020 21:54:29 GMT</p>
+
+                    </div>
+                    <div class="blurb">The executions put Mr Trump on track to be the most prolific execution president
+                        in modern history.</div>
+                    <div class="border"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<form method="post" class="">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="name" class="">Feed Name</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Add RSS Feed Name">
+    </div>
+    <div class="form-group">
+        <label for="feed" class="">Feed URL</label>
+        <input type="text" id="feed" name="feed" class="form-control" placeholder="Add RSS Feed">
+    </div>
+    <button name="feedAdd" type="submit" class="btn btn-primary mb-2">Add</button>
+</form>
+
+{%for feed in feedList%}
+<h2>{{feed.name}}</h2>
+<h3>{{feed.feed.title}}</h3>
+
+    {%for entry in feed.feed.entries%}
+    <div class="card" style="margin-bottom: 1em">
+        <div class="card-header">{{ entry.published }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ entry.title }}</h5>
+            <p class="card-text">{{ entry.description }}</p>
+            <a href="{{ entry.link }}" target="_blank" class="btn btn-primary">Read More</a>
+        </div>
+    </div>
+    {%endfor%}
+{%endfor%}
+
+
+
+{% if feed %}
+
+<h2 style="margin-top: 1em; margin-bottom: 1em">{{ feed.feed.title }}</h2>
+
+    {% if feed.entries %}
+        {% for entry in feed.entries %}
+
+<div class="card" style="margin-bottom: 1em">
+
+    <div class="card-header">
+
+        {{ entry.published }}
+
+    </div>
+
+    <div class="card-body">
+
+        <h5 class="card-title">{{ entry.title }}</h5>
+
+        <p class="card-text">{{ entry.description }}</p>
+
+        <a href="{{ entry.link }}" target="_blank" class="btn btn-primary">Read More</a>
+
+    </div>
+
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+
+{% endif %}
+
+{% else %}
+
+<br />
+
+<h3>Enter your favorite feed to get started</h3>
+
+{% endif %}
+
+
+
+
+{{ feed2 }}
+
+{% endblock %}

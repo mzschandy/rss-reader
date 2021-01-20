@@ -1,0 +1,295 @@
+$text-color: rgba(29, 29, 29, .80);
+
+
+body {
+    margin: 0;
+    color: $text-color;
+}
+.wrapper {
+    max-width: 1680px;
+    margin: 0 auto;
+    width: 100%;
+}
+i {
+    margin-right: 7px;
+}
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.top {
+    display: flex;
+    height: 75px;
+    background-color: #F7F7F7;
+    align-items: center;
+
+    .oneThird {
+        //flex: 20%;
+        width: 260px;
+        display: flex;
+    }
+    .twoThird {
+        width: auto;
+    }
+    .logo {
+        margin: 38px;
+        font-size: 1.5em;
+        font-weight: 800;
+
+        
+        & > span {
+            display: flex;
+        }
+
+        .mobileIcon {display: none;}
+
+        .icon {
+            color: red;
+        }
+    }
+    .brand {
+
+    }
+}
+.mobileMenu {
+    display: none;
+}
+
+.frame {
+    display: flex;
+    //padding-top: 1em;
+}
+#body {
+    margin-top: 75px;
+}
+.sidebar {
+    //display: flex;
+    position: fixed;
+    height: 100%;
+    background-color: #fff;
+   // flex: 20%;
+    width: 260px;
+    padding-top: 1em;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    //padding-left: 20px;
+
+    .menuItem {
+        color: rgba(29, 29, 29, .70);
+        padding: .5em 2em;
+        margin: 0 .5em;
+        border: 0px solid;
+        border-radius: 3px;
+
+        &:hover {
+            background-color: rgba(223, 223, 223, .51);
+            color: rgba(29, 29, 29, 1);
+        }
+
+        &.active {
+            color: rgba(29, 29, 29, 1);
+        }
+
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .addFeed {
+        margin-bottom: 1em;
+    }
+}
+.feedsList {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5em;
+    .name {
+        font-size: 12px;
+        color: rgba(29, 29, 29, .5);
+        margin-left: 38px;
+        text-transform: uppercase;
+    }
+
+    .item {
+        margin: .5em 3em;
+        color: $text-color;
+    }
+}
+#content {
+    //flex: 100%
+    width: 100%;
+    margin-left: 260px;
+}
+
+.content {
+    padding-top: 1em;
+    margin: 0 auto;
+    //position: fixed;
+    //max-height: 100%;
+    //width: 100%;
+    height: 100%;
+
+    .header {
+        font-size: 1.5em;
+        color: $text-color;
+        font-weight: 600;
+        //margin-bottom: 1em;
+        padding-left: 1em;
+        position: sticky;
+        top: 75px;
+        background-color: #fff;
+        padding: .5em .5em;
+    }
+}
+
+.feeds {
+    padding: 0 1em;
+    overflow-y: auto;
+}
+.feed .item {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    //align-items: center;
+    padding: 6px 00 6px;
+    height: 25px;
+    max-height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    border-top: 1px solid grey;
+    .name {
+        flex: 15%;
+        overflow: hidden;
+    }
+    .title {
+        flex: auto;
+        font-weight: 800;
+        overflow-x: hidden;
+    }
+    .summary {
+        flex: 45%;
+        overflow: hidden;
+    }
+    .date {
+        flex: 10%;
+    }
+    
+}
+
+.addSearch {
+    margin: 0 auto;
+    padding: 0 6em;
+
+    //display: flex;
+
+    form {
+        display: flex;
+        justify-content: center;
+    }
+    .formControl {
+        width: 250px;
+        margin: 0 .5em;
+    }
+    input[type="text"] {
+        padding: .5em 1em;
+        border: 1px solid;
+        border-radius: 3px;
+    }
+    input[type="submit"] {
+        padding: .5em 2em;
+        background-color: #fff;
+        border: 1px solid $text-color;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+}
+
+//All phones
+@media screen and (max-width: 749px) {
+    .top {
+        height: 50px;
+
+        .oneThird {
+            width: 100%;
+            justify-content: flex-start;
+        }
+        
+        .logo {
+            margin-left: 0;
+            font-size: 1.5em;
+            & > span {
+                display: flex;
+            }
+            .mobileIcon {
+                display:block;
+                margin-top: 1px;
+                padding-left: 5px;
+            }
+            .icon {display:none}
+        }
+        .twoThird {display: none;}
+    }
+    .mobileMenu {
+            width: 0;
+            display: none;
+            background-color: brown;
+            position: fixed;
+            z-index: 5;
+            height: 100%;
+            top: 0;
+            left: 0;
+            padding-top: 1em;
+            transition: .5s;
+        .closeMenu {
+            font-size: 1.5em;
+        }
+        .menu {
+            padding-left: 5px;
+        }
+    }
+    .sidebar {display: none;}
+    #body {
+        margin-top: 50px;
+    }
+    #content {
+        margin: 0 auto;
+    }
+    .content {
+        padding-top: 0;
+        .header {
+            top: 50px;
+        }
+    }
+    .feeds {
+        padding: 0;
+    }
+    .feed .item {
+        .summary, .date {
+            display: none;
+        }
+        padding: .5em 0;
+        font-size: 14px;
+    }
+    .addSearch {
+        padding: 0;
+        form {
+            flex-direction: column;
+        }
+        .formControl {
+            flex: 100%;
+            width: auto;
+        }
+        input[type="submit"] {
+            margin: 1em .5em;
+        }
+    }
+    
+}

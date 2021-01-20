@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rss.views import index
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("rss.urls")),
+    #path("", include("rss.urls")),
+    url(r'^$', index, name="FeedList")
 ]
